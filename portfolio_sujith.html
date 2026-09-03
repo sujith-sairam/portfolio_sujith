@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujith Sairam M — Full Stack Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #14181f;
+    --paper: #ffffff;
+    --coral: #ff5a36;
+    --coral-dark: #e2431f;
+    --blue: #2f6fed;
+    --blue-soft: #eaf1ff;
+    --teal: #00b39c;
+    --teal-soft: #e2fbf6;
+    --yellow: #ffc93c;
+    --yellow-soft: #fff7e0;
+    --grey: #6b7180;
+    --line: #eceae4;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ::selection{ background: var(--yellow); color: var(--ink); }
+
+  .shell{ max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-mark{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .nav-mark span{ color: var(--coral); }
+  .nav-links{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-links a{
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--grey);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-cta{
+    background: var(--ink);
+    color: var(--paper) !important;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover{ background: var(--coral); }
+  .nav-toggle{ display: none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 64px;
+  }
+  .eyebrow-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .dot{
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--teal);
+  }
+  .eyebrow-row span{
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--grey);
+  }
+  .hero h1{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.04;
+    max-width: 15ch;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub{
+    margin-top: 28px;
+    font-size: 1.15rem;
+    color: var(--grey);
+    max-width: 46ch;
+  }
+  .hero-actions{
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.94rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--coral); color: #fff; }
+  .btn-primary:hover{ box-shadow: 0 10px 24px -8px rgba(255,90,54,0.55); }
+  .btn-outline{ border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-outline:hover{ background: var(--ink); color: #fff; }
+
+  /* ---------- STAT STRIP ---------- */
+  .stats{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 80px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .stat{
+    padding: 34px 26px;
+    color: #fff;
+  }
+  .stat:nth-child(1){ background: var(--coral); }
+  .stat:nth-child(2){ background: var(--blue); }
+  .stat:nth-child(3){ background: var(--teal); }
+  .stat:nth-child(4){ background: var(--ink); }
+  .stat .num{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  .stat .label{
+    margin-top: 6px;
+    font-size: 0.84rem;
+    opacity: 0.9;
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{ padding: 96px 0; }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .section-head .tag{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .section-head h2{
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background: var(--blue-soft); }
+  .about .grid{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about .tag{ background: var(--blue); color: #fff; }
+  .about p{ font-size: 1.04rem; color: #333a4d; max-width: 56ch; }
+  .about p + p{ margin-top: 16px; }
+  .about-cloud{ display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+  .pill{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-weight: 500;
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience .tag{ background: var(--coral); color: #fff; }
+  .job{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  .job:last-child{ border-bottom: 1px solid var(--line); }
+  .job-date{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--grey);
+    padding-top: 4px;
+  }
+  .job-role{ font-weight: 700; font-size: 1.15rem; }
+  .job-co{
+    margin-top: 4px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .job:nth-of-type(1) .job-co{ color: var(--coral); }
+  .job:nth-of-type(2) .job-co{ color: var(--blue); }
+  .job:nth-of-type(3) .job-co{ color: var(--teal); }
+  .job ul{ margin-top: 16px; padding-left: 20px; color: #444a58; font-size: 0.96rem; }
+  .job li + li{ margin-top: 10px; }
+
+  /* ---------- PROJECTS ---------- */
+  .projects{ background: var(--yellow-soft); }
+  .projects .tag{ background: var(--yellow); color: var(--ink); }
+  .proj-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .proj-grid.single{
+    grid-template-columns: minmax(0, 460px);
+  }
+  .proj-card{
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .proj-top{ height: 8px; }
+  .proj-card:nth-child(1) .proj-top{ background: var(--coral); }
+  .proj-card:nth-child(2) .proj-top{ background: var(--blue); }
+  .proj-body{ padding: 28px; }
+  .proj-status{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--grey);
+  }
+  .proj-body h3{
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+  .proj-body p{
+    margin-top: 12px;
+    color: #444a58;
+    font-size: 0.95rem;
+  }
+  .proj-stack{ margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #f2f1ec;
+    color: #55596a;
+  }
+  .proj-link{
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--coral-dark);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .proj-link:hover{ border-color: var(--coral-dark); }
+
+  /* ---------- SKILLS ---------- */
+  .skills .tag{ background: var(--teal); color: #fff; }
+  .skill-groups{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 50px;
+  }
+  .skill-group h4{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .skill-group h4 .sw{ width: 10px; height: 10px; border-radius: 3px; }
+  .sg-1 .sw{ background: var(--blue); }
+  .sg-2 .sw{ background: var(--teal); }
+  .sg-3 .sw{ background: var(--coral); }
+  .sg-4 .sw{ background: var(--yellow); }
+  .skill-group .pill{ margin: 0 6px 8px 0; display: inline-block; }
+
+  /* ---------- EDUCATION ---------- */
+  .education .tag{ background: var(--ink); color: #fff; }
+  .edu-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .edu-card .name{ font-weight: 700; font-size: 1.1rem; }
+  .edu-card .sub{ color: var(--grey); font-size: 0.92rem; margin-top: 4px; }
+  .edu-card .date{ font-family: var(--mono); font-size: 0.82rem; color: var(--grey); }
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  .contact{
+    background: var(--ink);
+    color: #fff;
+    text-align: left;
+  }
+  .contact h2{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    max-width: 16ch;
+  }
+  .contact p{
+    margin-top: 20px;
+    color: #a9adba;
+    font-size: 1.05rem;
+    max-width: 50ch;
+  }
+  .contact-actions{
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .contact .btn-primary:hover{ box-shadow: 0 10px 24px -8px rgba(255,90,54,0.7); }
+  .btn-ghost{
+    border: 1.5px solid #3a3f4c;
+    color: #fff;
+  }
+  .btn-ghost:hover{ border-color: var(--teal); color: var(--teal); }
+  .foot-meta{
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid #262a34;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: #6b7180;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px){
+    .shell, .nav-inner{ padding-left: 22px; padding-right: 22px; }
+    .nav-links{ display: none; }
+    .stats{ grid-template-columns: repeat(2, 1fr); }
+    .about .grid{ grid-template-columns: 1fr; gap: 32px; }
+    .proj-grid{ grid-template-columns: 1fr; }
+    .skill-groups{ grid-template-columns: 1fr; }
+    .job{ grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">Sujith<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://github.com/sujith-sairam" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="shell">
+    <div class="eyebrow-row">
+      <span class="dot"></span>
+      <span>Software Engineer · Coimbatore, India</span>
+    </div>
+    <h1>Code by day, curious always.</h1>
+    <p class="hero-sub">Sujith Sairam M — a full stack software engineer who enjoys the whole picture: Angular on the front, C# and .NET underneath, Microsoft Azure holding it all up.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:saisujith589@gmail.com">Email</a>
+      <a class="btn btn-outline" href="https://github.com/sujith-sairam" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/sujith-sairam" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="tel:+916381212770">+91 63812 12770</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">Frontend</div>
+        <div class="label">Angular interfaces</div>
+      </div>
+      <div class="stat">
+        <div class="num">Backend</div>
+        <div class="label">C# and .NET APIs</div>
+      </div>
+      <div class="stat">
+        <div class="num">Cloud</div>
+        <div class="label">Microsoft Azure infrastructure</div>
+      </div>
+      <div class="stat">
+        <div class="num">Learning</div>
+        <div class="label">AI-augmented development tools</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <div class="shell">
+    <div class="section-head">
+      <span class="tag">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="grid">
+      <div>
+        <p>I'm a full stack engineer at Kovai.co, where I've grown from intern to associate to engineer over three years — picking up real production ownership along the way. I've architected core product modules, built RESTful APIs, and modernized backend infrastructure on Azure.</p>
+        <p>I care about software that holds up under real usage: clean data flows, dependable APIs, and systems the next engineer can actually understand. What keeps me hooked is the moment a tricky piece finally clicks into place — that's usually when I go down a rabbit hole reading docs I didn't need to read.</p>
+        <p>I also like keeping up with how AI tools are changing the way we build. I use Claude Code and GitHub Copilot regularly, not to skip the thinking, but to get to the interesting parts faster.</p>
+      </div>
+      <div class="about-cloud">
+        <span class="pill">C#</span>
+        <span class="pill">.NET</span>
+        <span class="pill">Angular</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">ASP.NET Core</span>
+        <span class="pill">Microsoft Azure</span>
+        <span class="pill">Azure Functions</span>
+        <span class="pill">SQL Server</span>
+        <span class="pill">MongoDB</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Claude Code</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="experience">
+  <div class="shell">
+    <div class="section-head">
+      <span class="tag">02</span>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="job">
+      <div class="job-date">Jan 2026 — Present</div>
+      <div>
+        <div class="job-role">Software Engineer</div>
+        <div class="job-co">Kovai.co, Coimbatore</div>
+        <ul>
+          <li>Architected end-to-end functionality for the Project Creation module using Angular, C#, ASP.NET Core Web API, and MongoDB.</li>
+          <li>Migrated background-processing workloads from Azure Cloud Services to Azure Functions, improving throughput by 30%.</li>
+          <li>Led production enhancement and performance-optimization work across core application workflows.</li>
+          <li>Use Claude Code as an AI-augmented development partner for analysis, debugging, and refactoring.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-date">Jul 2024 — Dec 2025</div>
+      <div>
+        <div class="job-role">Associate Software Engineer</div>
+        <div class="job-co">Kovai.co, Coimbatore</div>
+        <ul>
+          <li>Handled production issues through in-depth root cause analysis, sustaining 95% adherence to SLA and ETA commitments.</li>
+          <li>Built a Document360 content-migration engine automating media uploads, URL remapping, and article-link restructuring.</li>
+          <li>Used LINQ, Entity Framework Core, and SQL Server to keep data processing efficient and reliable.</li>
+          <li>Formulated customer-specific JavaScript runtime solutions using GitHub Copilot to speed up development.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-date">Apr 2023 — May 2024</div>
+      <div>
+        <div class="job-role">Software Engineer Intern</div>
+        <div class="job-co">Kovai.co, Coimbatore</div>
+        <ul>
+          <li>Built Angular UI for media tagging, alt-text management, and file preview, backed by Azure Blob Storage.</li>
+          <li>Resolved 70+ production and security-related defects through rigorous root cause analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="shell">
+    <div class="section-head">
+      <span class="tag">03</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="proj-grid single">
+      <div class="proj-card">
+        <div class="proj-top"></div>
+        <div class="proj-body">
+          <div class="proj-status">Personal project · in progress</div>
+          <h3>CareerForge</h3>
+          <p>An AI-powered career development tool that analyzes a user's profile and target role, then generates a personalized skill roadmap to help job seekers build relevant skills faster. Designed and built end to end with Claude Code as a development partner.</p>
+          <div class="proj-stack">
+            <span class="chip">C#</span>
+            <span class="chip">.NET</span>
+            <span class="chip">Angular</span>
+            <span class="chip">Claude Code</span>
+          </div>
+          <a class="proj-link" href="https://github.com/sujith-sairam" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <div class="shell">
+    <div class="section-head">
+      <span class="tag">04</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group sg-1">
+        <h4><span class="sw"></span>Languages &amp; frameworks</h4>
+        <div>
+          <span class="pill">C#</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span>
+          <span class="pill">Angular</span><span class="pill">.NET</span><span class="pill">ASP.NET Core</span>
+          <span class="pill">ASP.NET Core Web API</span>
+        </div>
+      </div>
+      <div class="skill-group sg-2">
+        <h4><span class="sw"></span>Cloud &amp; integration</h4>
+        <div>
+          <span class="pill">Microsoft Azure</span><span class="pill">Azure Functions</span>
+          <span class="pill">Azure Cloud Services</span><span class="pill">Azure Blob Storage</span>
+          <span class="pill">RESTful APIs</span>
+        </div>
+      </div>
+      <div class="skill-group sg-3">
+        <h4><span class="sw"></span>Data &amp; architecture</h4>
+        <div>
+          <span class="pill">SQL Server</span><span class="pill">MongoDB</span>
+          <span class="pill">Entity Framework Core</span><span class="pill">LINQ</span>
+          <span class="pill">SOLID Principles</span><span class="pill">Design Patterns</span>
+        </div>
+      </div>
+      <div class="skill-group sg-4">
+        <h4><span class="sw"></span>Practices &amp; tools</h4>
+        <div>
+          <span class="pill">Full Stack Development</span><span class="pill">Unit Testing</span>
+          <span class="pill">Git</span><span class="pill">GitHub Copilot</span><span class="pill">Claude Code</span><span class="pill">Visual Studio</span><span class="pill">Visual Studio Code</span><span class="pill">SSMS</span><span class="pill">MongoDB Compass</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="education">
+  <div class="shell">
+    <div class="section-head">
+      <span class="tag">05</span>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="name">B.E., Computer Science and Engineering</div>
+        <div class="sub">Sri Eshwar College of Engineering, Coimbatore, Tamil Nadu · GPA 8.2 / 10</div>
+      </div>
+      <div class="date">Oct 2020 — May 2024</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="shell">
+    <h2>I like talking about this stuff.</h2>
+    <p>If you're working on something interesting, curious about the projects above, or just want to talk through a tricky API or Azure setup — reach out. Email's the easiest way to find me.</p>
+    <div class="contact-actions">
+      <a class="btn btn-primary" href="mailto:saisujith589@gmail.com">saisujith589@gmail.com</a>
+      <a class="btn btn-ghost" href="https://github.com/sujith-sairam" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/sujith-sairam" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="tel:+916381212770">+91 63812 12770</a>
+    </div>
+    <div class="foot-meta">
+      <span>Sujith Sairam M — Coimbatore, Tamil Nadu, India</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
